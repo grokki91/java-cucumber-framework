@@ -2,16 +2,14 @@ package pages;
 
 import locators.SearchListPageLocators;
 import org.openqa.selenium.support.PageFactory;
-import utils.BaseSettings;
+import settings.WebDriverSettings;
 
-import java.util.Locale;
-
-public class SearchListPage extends BaseSettings {
+public class SearchListPage extends WebDriverSettings {
     SearchListPageLocators searchListPage = null;
 
     public SearchListPage() {
         this.searchListPage = new SearchListPageLocators();
-        PageFactory.initElements(BaseSettings.getDriver(), searchListPage);
+        PageFactory.initElements(WebDriverSettings.getDriver(), searchListPage);
     }
 
     public String checkTitleText(String string) {

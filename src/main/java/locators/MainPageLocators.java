@@ -7,6 +7,12 @@ public class MainPageLocators {
     @FindBy(xpath = "//input[@data-marker='search-form/suggest']")
     public WebElement searchInput;
 
+    @FindBy(xpath = "//img[@alt='Электроника']")
+    public WebElement electronicSection;
+
+    @FindBy(xpath = "//img[@alt='Телефоны']")
+    public WebElement phoneSection;
+
     @FindBy(xpath = "//button[@data-marker='search-form/submit-button']")
     public WebElement findBtn;
 
@@ -22,15 +28,15 @@ public class MainPageLocators {
     @FindBy(xpath = "//input[@placeholder='Производитель']")
     public WebElement inputProducer;
 
-    @FindBy(xpath = "//li[contains(@data-marker,'suggest-dropdown')]")
+    @FindBy(xpath = "//div[contains(@class, 'dropdown')]/descendant::*[text()='Apple']")
     public WebElement btnOptionApple;
 
     @FindBy(xpath = "//input[@placeholder='Модель']")
     public WebElement inputModel;
 
-    @FindBy(xpath = "//li[contains(@data-marker,'suggest-dropdown')]")
+    @FindBy(xpath = "//div[contains(@class, 'dropdown')]/descendant::*[text()='iPhone 15 Pro Max']")
     public WebElement btnOptionModel;
 
-    @FindBy(xpath = "//span[contains(text(), 'Показать')]")
+    @FindBy(xpath = "//span[contains(text(), 'Показать')]/ancestor::button")
     public WebElement btnShow;
 }

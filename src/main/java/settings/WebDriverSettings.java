@@ -1,4 +1,4 @@
-package utils;
+package settings;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BaseSettings {
+public class WebDriverSettings {
     public static WebDriver driver;
     protected static WebDriverWait wait;
     public final static int TIMEOUT = 10;
@@ -22,8 +22,8 @@ public class BaseSettings {
     @Before
     public static void init() {
         if (driver == null) {
-//            DesiredCapabilities capabilities = new DesiredCapabilities();
-//            capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
@@ -40,12 +40,20 @@ public class BaseSettings {
         return driver;
     }
 
-    protected void waitForVisibility(By locator) {
+    public void waitForVisibility(By locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    protected void waitForClickable(WebElement locator) {
+    public void waitForClickable(WebElement locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public static void waitFor(int sec) {
+        try {
+            Thread.sleep(sec * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @After
