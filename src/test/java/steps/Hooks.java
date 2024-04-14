@@ -10,6 +10,7 @@ import settings.WebDriverSettings;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 public class Hooks {
     @Before
@@ -23,12 +24,14 @@ public class Hooks {
             File srcFile = ((TakesScreenshot) WebDriverSettings.getDriver()).getScreenshotAs(OutputType.FILE);
             String useDir = System.getProperty("user.dir");
             File directory = new File(useDir, "screenshots");
+            UUID randomText = UUID.randomUUID();
 
             if (!directory.exists()) {
                 directory.mkdir();
-                FileHandler.copy(srcFile, new File("./screenshots/" + scenario.getName() + ".png"));
-
             }
+
+            FileHandler.copy(srcFile, new File("./screenshots/" + scenario.getName() + "_" + randomText + ".png"));
+
         }
 
         WebDriverSettings.tearDown();
